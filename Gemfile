@@ -40,6 +40,8 @@ gem 'bootsnap', require: false
 gem 'bcrypt'
 gem 'dotenv-rails'
 gem 'dotenv_validator'
+gem 'oj_serializers'
+gem 'types_from_serializers'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
