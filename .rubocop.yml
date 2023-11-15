@@ -8,9 +8,10 @@ require:
 
 AllCops:
   Exclude:
-    - vendor/**/*
     - bin/**/*
+    - db/schema.rb
     - tmp/*
+    - vendor/**/*
   NewCops: enable
 
 Layout/HashAlignment:
