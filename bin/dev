@@ -1,0 +1,13 @@
+#! /bin/bash -e
+
+set -a; source .env; set +a
+
+bundle check || bundle install
+./bin/rails db:migrate
+
+if [ -z "$PORT" ]
+then
+  PORT=3000
+fi
+
+./bin/rails s -b 0.0.0.0
