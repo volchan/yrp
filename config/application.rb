@@ -43,7 +43,9 @@ module Yrp
     # Skip views, helpers and assets when generating a new resource.
     config.api_only = true
 
-    Rails.logger = Logger.new($stdout)
-    config.logger = ActiveSupport::Logger.new("log/#{Rails.env}.log")
+    # if %w[development production].include?(Rails.env)
+    #   Rails.logger = Logger.new($stdout)
+    #   config.logger = ActiveSupport::Logger.new("log/#{Rails.env}.log")
+    # end
   end
 end
