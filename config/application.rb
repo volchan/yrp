@@ -16,6 +16,8 @@ require 'action_view/railtie'
 require 'action_cable/engine'
 # require "rails/test_unit/railtie"
 
+require_relative '../lib/middlewares/format_params'
+
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
@@ -29,6 +31,9 @@ module Yrp
     # not contain `.rb` files, or that should not be reloaded or eager loaded.
     # Common ones are `templates`, `generators`, or `middleware`, for example.
     config.autoload_lib(ignore: %w[assets tasks])
+
+    # Add the middleware to the stack
+    config.middleware.use Middleware::FormatParams
 
     # Configuration for the application, engines, and railties goes here.
     #
