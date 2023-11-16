@@ -9,4 +9,21 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
+
+  scope :api do
+    scope :v1 do
+      use_doorkeeper do
+        skip_controllers :authorizations, :applications, :authorized_applications
+      end
+    end
+  end
+
+  namespace :api do
+    namespace :v1 do
+      resources :users, only: %i[create]
+      resource :users, only: [] do
+        get :me
+      end
+    end
+  end
 end

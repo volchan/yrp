@@ -17,6 +17,17 @@ class User < ApplicationRecord
   validates :password, presence: true, confirmation: true, format: PASSWORD_REQUIREMENTS
   validates :password_confirmation, presence: true
 
+  class << self
+    def find_for_authentication(email:)
+      find_by(email:)
+    end
+
+    def authenticate(email, password)
+      user = find_for_authentication(email:)
+      user&.authenticate(password) ? user : nil
+    end
+  end
+
   private
 
   def sanitize_email
