@@ -17,5 +17,5 @@ unless Doorkeeper::Application.exists?(name: 'Web Client')
   puts "🤫 Secret: #{app.secret}"
 end
 
-puts '🗃️ Done!'
+puts '🗃️  Done!'
 # rubocop:enable Rails/Output

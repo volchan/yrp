@@ -3,6 +3,8 @@
 class User < ApplicationRecord
   has_secure_password
 
+  EMAIL_REGEX = /\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+/
+
   PASSWORD_REQUIREMENTS = /\A
     (?=.{8,})          # Must contain 8 or more characters
     (?=.*\d)           # Must contain a digit
@@ -11,26 +13,9 @@ class User < ApplicationRecord
     (?=.*[[:^alnum:]]) # Must contain a symbol
   /x
 
-  before_validation :sanitize_email, if: :will_save_change_to_email?
-
-  validates :email, presence: true, uniqueness: true
-  validates :password, presence: true, confirmation: true, format: PASSWORD_REQUIREMENTS
+  validates :email, presence: true, uniqueness: true, format: { with: EMAIL_REGEX }
+  validates :password, presence: true, confirmation: true, format: { with: PASSWORD_REQUIREMENTS }
   validates :password_confirmation, presence: true
 
-  class << self
-    def find_for_authentication(email:)
-      find_by(email:)
-    end
-
-    def authenticate(email, password)
-      user = find_for_authentication(email:)
-      user&.authenticate(password) ? user : nil
-    end
-  end
-
-  private
-
-  def sanitize_email
-    self.email = email.downcase.strip
-  end
+  normalizes :email, with: -> { _1.downcase.strip }
 end

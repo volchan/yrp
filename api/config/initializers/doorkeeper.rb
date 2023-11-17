@@ -14,10 +14,8 @@ Doorkeeper.configure do
   # end
 
   resource_owner_from_credentials do |_routes|
-    User.authenticate(params[:email], params[:password])
+    User.authenticate_by(email: params[:email], password: params[:password])
   end
-
-  access_token_generator '::Doorkeeper::JWT'
 
   # If you didn't skip applications controller from Doorkeeper routes in your application routes.rb
   # file then you need to declare this block in order to restrict access to the web interface for
@@ -85,7 +83,7 @@ Doorkeeper.configure do
   # want to use API mode that will skip all the views management and change the way how
   # Doorkeeper responds to a requests.
   #
-  # api_only
+  api_only
 
   # Enforce token request content type to application/x-www-form-urlencoded.
   # It is not enabled by default to not break prior versions of the gem.
@@ -121,7 +119,7 @@ Doorkeeper.configure do
   # Use a custom class for generating the access token.
   # See https://doorkeeper.gitbook.io/guides/configuration/other-configurations#custom-access-token-generator
   #
-  # access_token_generator '::Doorkeeper::JWT'
+  access_token_generator '::Doorkeeper::JWT'
 
   # The controller +Doorkeeper::ApplicationController+ inherits from.
   # Defaults to +ActionController::Base+ unless +api_only+ is set, which changes the default to
@@ -140,7 +138,7 @@ Doorkeeper.configure do
   #
   # You can not enable this option together with +hash_token_secrets+.
   #
-  # reuse_access_token
+  reuse_access_token
 
   # In case you enabled `reuse_access_token` option Doorkeeper will try to find matching
   # token using `matching_token_for` Access Token API that searches for valid records
