@@ -33,7 +33,7 @@ module Yrp
     config.autoload_lib(ignore: %w[assets tasks])
 
     # Add the middleware to the stack
-    config.middleware.use Middlewares::FormatParams
+    config.middleware.use ::Middlewares::FormatParams
 
     # Configuration for the application, engines, and railties goes here.
     #
