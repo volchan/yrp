@@ -1,0 +1,157 @@
+---
+name: main
+# Controls when the workflow will run
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+  workflow_dispatch:
+
+jobs:
+  eslint:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - uses: oven-sh/setup-bun@v1
+      with:
+        version: ${{ vars.BUN_VERSION }}
+    - uses: actions/setup-node@v3
+      with:
+        node-version: ${{ vars.NODE_VERSION }}
+        cache: 'bun'
+    - name: install
+      run: bun install
+    - name: ESLint
+      run: bun lint
+
+  prettier:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - uses: oven-sh/setup-bun@v1
+      with:
+        version: ${{ vars.BUN_VERSION }}
+    - uses: actions/setup-node@v3
+      with:
+        node-version: ${{ vars.NODE_VERSION }}
+        cache: 'bun'
+    - name: install
+      run: bun install
+    - name: Prettier
+      run: bun lint:prettier
+  
+  depcheck:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - uses: oven-sh/setup-bun@v1
+      with:
+        version: ${{ vars.BUN_VERSION }}
+    - uses: actions/setup-node@v3
+      with:
+        node-version: ${{ vars.NODE_VERSION }}
+        cache: 'bun'
+    - name: install
+      run: bun install
+    - name: Depcheck
+      run: bun depcheck
+
+  stylelint:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - uses: oven-sh/setup-bun@v1
+      with:
+        version: ${{ vars.BUN_VERSION }}
+    - uses: actions/setup-node@v3
+      with:
+        node-version: ${{ vars.NODE_VERSION }}
+        cache: 'bun'
+    - name: install
+      run: bun install
+    - name: Stylelint
+      run: bun lint:style
+
+  brakeman:
+    name: Brakeman
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true # runs 'bundle install' and caches installed gems automatically
+      - name: Brakeman
+        run: bundle exec brakeman -z -q
+  
+  rails_best_practices:
+    name: Rails Best Practices
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true # runs 'bundle install' and caches installed gems automatically
+      - name: Rails Best Practices
+        run: bundle exec rails_best_practices -c config/rails_best_practices.yml
+
+  rubocop:
+    name: Rubocop
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true # runs 'bundle install' and caches installed gems automatically
+      - name: Rubocop
+        run: bundle exec rubocop
+
+  rspec:
+    name: RSpec
+    runs-on: ubuntu-latest
+    needs:
+      - eslint
+      - prettier
+      - depcheck
+      - stylelint
+      - brakeman
+      - rails_best_practices
+      - rubocop
+    services:
+      postgres:
+        image: postgres:16-alpine
+        env:
+          POSTGRES_DB: yrp_test
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+        ports: ["5432:5432"]
+        options: --health-cmd pg_isready --health-interval 1s --health-timeout 500ms --health-retries 15
+
+      redis:
+        image: redis
+        # Set health checks to wait until redis has started
+        options: >-
+          --health-cmd "redis-cli ping"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports: ["6379:6379"]
+
+    env:
+      RAILS_ENV: test
+      RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
+      DATABASE_URL: postgres://postgres:postgres@localhost:5432/yrp_test
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true # runs 'bundle install' and caches installed gems automatically
+
+      - name: Setup database
+        run: bundle exec rails db:prepare
+
+      - name: Run tests
+        run: bundle exec rspec

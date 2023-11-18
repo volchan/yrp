@@ -1,0 +1,18 @@
+{
+  "ignores": [
+    "autoprefixer",
+    "normalize.css",
+    "@storybook/addon-essentials",
+    "@storybook/addon-interactions",
+    "@storybook/addon-links",
+    "@storybook/addon-onboarding",
+    "@storybook/blocks",
+    "@storybook/testing-library",
+    "@types/eslint",
+    "eslint-plugin-prettier",
+    "stylelint-config-recommended",
+    "stylelint-config-recommended-scss",
+    "stylelint-prettier",
+    "stylelint-scss"
+  ]
+}
