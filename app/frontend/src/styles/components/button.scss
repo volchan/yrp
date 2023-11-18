@@ -1,0 +1,53 @@
+@use 'sass:color';
+@use 'sass:map';
+@use '../variables/colors.scss';
+
+$button-types: 'primary', 'success', 'warning', 'danger', 'info';
+$button-sizes: 'small', 'medium', 'large';
+
+.button {
+  font-size: 1em;
+  font-weight: 500;
+  padding: 0.6em 1.2em;
+  border-radius: 6px;
+  border: none;
+  color: white;
+  transition: all 0.3s ease;
+  cursor: pointer;
+
+  &--block {
+    display: block;
+    width: 100%;
+  }
+
+  @each $type in $button-types {
+    &--#{$type} {
+      background-color: map.get(colors.$colors, $type);
+
+      &:hover {
+        background-color: color.adjust(map.get(colors.$colors, $type), $lightness: -10%);
+      }
+
+      &--disabled {
+        background-color: rgba(map.get(colors.$colors, $type), 0.25);
+        cursor: not-allowed;
+
+        &:hover {
+          background-color: rgba(map.get(colors.$colors, $type), 0.25);
+        }
+      }
+    }
+  }
+
+  @each $size in $button-sizes {
+    &--#{$size} {
+      @if $size == 'small' {
+        font-size: 0.8em;
+        padding: 0.4em 0.8em;
+      } @else if $size == 'large' {
+        font-size: 1.2em;
+        padding: 0.8em 1.6em;
+      }
+    }
+  }
+}

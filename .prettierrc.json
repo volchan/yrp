@@ -14,6 +14,12 @@
         "singleQuote": false,
         "trailingComma": "none"
       }
+    },
+    {
+      "files": ["*.scss"],
+      "options": {
+        "parser": "scss"
+      }
     }
   ]
 }

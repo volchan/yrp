@@ -18,12 +18,9 @@
       "DOM"
     ],
     "paths": {
-      "~/*": [
-        "./app/frontend/*"
+      "@components/*": [
+        "./app/frontend/src/components/*"
       ],
-      "@/*": [
-        "./app/frontend/*"
-      ]
     },
   },
   "exclude": [
