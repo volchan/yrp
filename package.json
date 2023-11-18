@@ -7,6 +7,7 @@
     "dev": "vite",
     "preview": "vite preview",
     "depcheck": "depcheck",
+    "lint": "eslint --ext .ts,.tsx ./app/frontend",
     "lint:fix": "eslint --fix --ext .ts,.tsx ./app/frontend",
     "lint:prettier": "prettier --check './app/frontend/**/*.ts' './app/frontend/**/*.tsx'",
     "lint:prettier:fix": "prettier --write './app/frontend/**/*.ts' './app/frontend/**/*.tsx'",
