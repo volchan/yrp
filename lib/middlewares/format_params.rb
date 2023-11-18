@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Middleware
+module Middlewares
   class FormatParams
     def initialize(app)
       @app = app

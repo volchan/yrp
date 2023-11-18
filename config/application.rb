@@ -33,7 +33,7 @@ module Yrp
     config.autoload_lib(ignore: %w[assets tasks])
 
     # Add the middleware to the stack
-    config.middleware.use Middleware::FormatParams
+    config.middleware.use Middlewares::FormatParams
 
     # Configuration for the application, engines, and railties goes here.
     #
@@ -41,7 +41,7 @@ module Yrp
     # in config/environments, which are processed later.
     #
     # config.time_zone = "Central Time (US & Canada)"
-    # config.eager_load_paths << Rails.root.join("extras")
+    config.eager_load_paths << Rails.root.join('lib/middlewares')
 
     # Only loads a smaller set of middleware suitable for API only apps.
     # Middleware like session, flash, cookies can be added back manually.

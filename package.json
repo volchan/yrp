@@ -13,7 +13,7 @@
     "lint:prettier:fix": "prettier --write './app/frontend/**/*.ts' './app/frontend/**/*.tsx'",
     "lint:style": "stylelint --config .stylelintrc.json --allow-empty-input './app/frontend/**/*.scss'",
     "lint:style:fix": "stylelint --fix --allow-empty-input './app/frontend/**/*.scss'",
-    "storybook": "storybook dev -p 6006",
+    "storybook": "storybook dev -p 3003 --no-open",
     "build-storybook": "storybook build"
   },
   "type": "module",
