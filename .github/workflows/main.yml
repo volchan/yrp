@@ -16,7 +16,7 @@ jobs:
     - uses: actions/checkout@v4
     - uses: oven-sh/setup-bun@v1
       with:
-        version: ${{ vars.BUN_VERSION }}
+        bun-version: ${{ vars.BUN_VERSION }}
     - name: install
       run: bun install
     - name: ESLint
@@ -28,7 +28,7 @@ jobs:
     - uses: actions/checkout@v4
     - uses: oven-sh/setup-bun@v1
       with:
-        version: ${{ vars.BUN_VERSION }}
+        bun-version: ${{ vars.BUN_VERSION }}
     - name: install
       run: bun install
     - name: Prettier
@@ -40,7 +40,7 @@ jobs:
     - uses: actions/checkout@v4
     - uses: oven-sh/setup-bun@v1
       with:
-        version: ${{ vars.BUN_VERSION }}
+        bun-version: ${{ vars.BUN_VERSION }}
     - name: install
       run: bun install
     - name: Depcheck
@@ -52,7 +52,7 @@ jobs:
     - uses: actions/checkout@v4
     - uses: oven-sh/setup-bun@v1
       with:
-        version: ${{ vars.BUN_VERSION }}
+        bun-version: ${{ vars.BUN_VERSION }}
     - name: install
       run: bun install
     - name: Stylelint
