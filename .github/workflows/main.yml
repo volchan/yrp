@@ -41,7 +41,7 @@ jobs:
       run: bun install
     - name: Prettier
       run: bun lint:prettier
-  
+
   depcheck:
     runs-on: ubuntu-latest
     steps:
@@ -84,7 +84,7 @@ jobs:
           bundler-cache: true # runs 'bundle install' and caches installed gems automatically
       - name: Brakeman
         run: bundle exec brakeman -z -q
-  
+
   rails_best_practices:
     name: Rails Best Practices
     runs-on: ubuntu-latest
