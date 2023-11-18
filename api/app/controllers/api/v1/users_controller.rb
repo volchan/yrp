@@ -6,44 +6,27 @@ module Api
       skip_before_action :doorkeeper_authorize!, only: %i[create]
 
       def create
-        user = User.new(user_params)
+        user = User.new(user_params.except(:client_id))
         if user.save
-          client_app = Doorkeeper::Application.find_by(uid: params[:client_id])
+          client_app = Doorkeeper::Application.find_by(uid: user_params[:client_id])
 
           render(json: { error: 'Invalid client ID' }, status: :forbidden) unless client_app
 
-          token = generate_doorkeeper_token(user, client_app)
-          render json: { access_token: DoorkeeperTokenSerializer.one(token) }
+          token = user.generate_doorkeeper_token(client_app.id)
+          render json: DoorkeeperTokenSerializer.one(token), status: :created
         else
-          render json: { errors: user.errors.full_messages }, status: :unprocessable_entity
+          render json: { errors: user.errors }, status: :unprocessable_entity
         end
       end
 
       def me
-        render json: { user: UserSerializer.one(current_user) }
+        render json: UserSerializer.one(current_user), status: :ok
       end
 
       private
 
       def user_params
-        params.require(:user).permit(:email, :password, :password_confirmation)
-      end
-
-      def generate_doorkeeper_token(user, client_app)
-        Doorkeeper::AccessToken.create!(
-          resource_owner_id: user.id,
-          application_id:    client_app.id,
-          refresh_token:     generate_refresh_token,
-          expires_in:        Doorkeeper.configuration.access_token_expires_in.to_i,
-          scopes:            '',
-        )
-      end
-
-      def generate_refresh_token
-        loop do
-          token = SecureRandom.hex(32)
-          break token unless Doorkeeper::AccessToken.exists?(refresh_token: token)
-        end
+        params.require(:user).permit(:client_id, :email, :password, :password_confirmation)
       end
     end
   end
