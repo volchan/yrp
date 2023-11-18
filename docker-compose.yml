@@ -1,5 +1,4 @@
-
-version: '3.8'
+version: "3.8"
 
 name: yrp-services
 services:
@@ -7,7 +6,7 @@ services:
     image: postgres:16
     container_name: postgres
     volumes:
-      - ./tmp/db:/var/lib/postgresql/data
+      - ./api/tmp/db:/var/lib/postgresql/data
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres

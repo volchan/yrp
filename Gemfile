@@ -44,6 +44,8 @@ gem 'dotenv-rails'
 gem 'dotenv_validator'
 gem 'oj_serializers'
 gem 'types_from_serializers'
+gem 'vite_plugin_legacy'
+gem 'vite_rails'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
