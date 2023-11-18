@@ -16,7 +16,7 @@ jobs:
     - uses: actions/checkout@v4
     - uses: actions/cache@v3
       with:
-        key: key
+        key: ${{ runner.os }}-bun-${{ hashFiles('**/lockfiles') }}
         path: ~/.bun/install/cache
     - uses: oven-sh/setup-bun@v1
       with:
@@ -32,7 +32,7 @@ jobs:
     - uses: actions/checkout@v4
     - uses: actions/cache@v3
       with:
-        key: key
+        key: ${{ runner.os }}-bun-${{ hashFiles('**/lockfiles') }}
         path: ~/.bun/install/cache
     - uses: oven-sh/setup-bun@v1
       with:
@@ -48,7 +48,7 @@ jobs:
     - uses: actions/checkout@v4
     - uses: actions/cache@v3
       with:
-        key: key
+        key: ${{ runner.os }}-bun-${{ hashFiles('**/lockfiles') }}
         path: ~/.bun/install/cache
     - uses: oven-sh/setup-bun@v1
       with:
@@ -64,7 +64,7 @@ jobs:
     - uses: actions/checkout@v4
     - uses: actions/cache@v3
       with:
-        key: key
+        key: ${{ runner.os }}-bun-${{ hashFiles('**/lockfiles') }}
         path: ~/.bun/install/cache
     - uses: oven-sh/setup-bun@v1
       with:
