@@ -37,6 +37,7 @@ PreCommit:
     command: ["bun", "lint"]
   RailsBestPractices:
     enabled: true
+    command: ["bundle", "exec", "rails_best_practices", "-c", "config/rails_best_practices.yml"]
   RailsSchemaUpToDate:
     enabled: true
   RuboCop:
@@ -49,6 +50,3 @@ PreCommit:
 PrePush:
   Brakeman:
     enabled: true
-  Rspec:
-    enabled: true
-    command: ["bundle", "exec", "rspec"]

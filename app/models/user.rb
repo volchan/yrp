@@ -3,7 +3,7 @@
 class User < ApplicationRecord
   has_secure_password
 
-  EMAIL_REGEX = /\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+/
+  EMAIL_REGEX = /\A\w+([\.\-+]?\w+)*@\w+([\.-]?\w+)*(\.\w{1,})+\z/
 
   PASSWORD_REQUIREMENTS = /\A
     (?=.{8,})          # Must contain 8 or more characters
@@ -11,7 +11,8 @@ class User < ApplicationRecord
     (?=.*[a-z])        # Must contain a lower case character
     (?=.*[A-Z])        # Must contain an upper case character
     (?=.*[[:^alnum:]]) # Must contain a symbol
-  /x
+    .*                 # Any characters
+  \z/x
 
   has_many :access_tokens, # rubocop:disable Rails/InverseOf
            class_name:  'Doorkeeper::AccessToken',
