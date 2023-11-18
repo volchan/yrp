@@ -32,6 +32,9 @@ PreCommit:
     include:
       - "**/Gemfile"
       - "**/Gemfile.lock"
+  EsLint:
+    enabled: true
+    command: ["bun", "lint"]
   RailsBestPractices:
     enabled: true
   RailsSchemaUpToDate:
@@ -39,6 +42,9 @@ PreCommit:
   RuboCop:
     enabled: true
     command: ["bundle", "exec", "rubocop"]
+  StyleLint:
+    enabled: true
+    command: ["bun", "lint:style"]
 
 PrePush:
   Brakeman:

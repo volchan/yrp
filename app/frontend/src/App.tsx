@@ -1,10 +1,10 @@
-import { useState } from "react";
+import { useState } from 'react'
 
-import reactLogo from "@/src/assets/react.svg";
-import "@/src/App.scss";
+import reactLogo from '@/src/assets/react.svg'
+import '@/src/App.scss'
 
 function App() {
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState(0)
 
   return (
     <div>
@@ -18,7 +18,7 @@ function App() {
         </div>
       </div>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App

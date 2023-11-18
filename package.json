@@ -1,27 +1,46 @@
 {
   "name": "client",
-  "private": true,
-  "version": "0.0.0",
-  "type": "module",
   "packageManager": "bun@1.0.11",
+  "private": true,
   "scripts": {
-    "dev": "vite",
     "build": "tsc && vite build",
-    "preview": "vite preview"
+    "dev": "vite",
+    "preview": "vite preview",
+    "lint": "eslint --ext .ts,.tsx ./app/frontend",
+    "lint:fix": "eslint --fix --ext .ts,.tsx ./app/frontend",
+    "lint:style": "stylelint --fix --allow-empty-input --allow-empty-input './app/frontend/**/*.scss'",
+    "lint:style:fix": "stylelint --fix --allow-empty-input './app/frontend/**/*.scss'"
   },
+  "type": "module",
+  "version": "0.0.0",
+  "sasslintConfig": ".sass-lint.yml",
   "dependencies": {
     "@vitejs/plugin-legacy": "^5.0.0",
     "@vitejs/plugin-react": "^4.2.0",
     "autoprefixer": "^10.4.16",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
-  },
-  "devDependencies": {
-    "@types/react": "^18.2.37",
-    "@types/react-dom": "^18.2.15",
-    "sass": "^1.69.5",
-    "typescript": "^5.2.2",
+    "react-dom": "^18.2.0",
     "vite": "^5.0.0",
     "vite-plugin-rails": "^0.5.0"
+  },
+  "devDependencies": {
+    "@types/eslint": "^8.44.7",
+    "@types/react": "^18.2.37",
+    "@types/react-dom": "^18.2.15",
+    "eslint": "^8.54.0",
+    "eslint-config-airbnb-typescript": "^17.1.0",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-import-resolver-typescript": "^3.6.1",
+    "eslint-plugin-import": "^2.29.0",
+    "eslint-plugin-prettier": "^5.0.1",
+    "prettier": "^3.1.0",
+    "sass": "^1.69.5",
+    "sass-lint": "^1.13.1",
+    "stylelint": "^15.11.0",
+    "stylelint-config-recommended": "^13.0.0",
+    "stylelint-config-recommended-scss": "^13.1.0",
+    "stylelint-prettier": "^4.0.2",
+    "stylelint-scss": "^5.3.1",
+    "typescript": "^5.2.2"
   }
 }
