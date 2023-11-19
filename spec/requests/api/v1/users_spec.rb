@@ -34,7 +34,9 @@ RSpec.describe 'API::V1::Users' do
 
       it 'returns the created Doorkeeper::AccessToken' do
         do_request
-        expect(response.body).to eq(DoorkeeperTokenSerializer.one(User.last.access_tokens.first).to_json)
+        expect(response.body).to eq(
+          DoorkeeperTokenSerializer.one(User.order(:created_at).last.access_tokens.first).to_json,
+        )
       end
     end
 

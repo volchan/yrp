@@ -6,15 +6,11 @@ import { Button } from './components/Button'
 function App() {
   const [count, setCount] = useState(0)
 
+  console.log(import.meta.env) // eslint-disable-line no-console
+  console.log(import.meta.env.CLIENT_SECRET) // eslint-disable-line no-console
+
   return (
-    <div
-      style={{
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        height: '100vh',
-      }}
-    >
+    <div>
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
         <img src={reactLogo} className="App-logo" alt="logo" />
         <p>

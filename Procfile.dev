@@ -1,4 +1,4 @@
 
-vite: bin/vite dev
-web: bin/dev
+web: bin/vite dev
+api: bin/dev
 storybook: bun storybook
