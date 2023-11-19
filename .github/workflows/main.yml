@@ -16,7 +16,7 @@ jobs:
     - uses: actions/checkout@v4
     - uses: actions/cache@v3
       with:
-        key: ${{ runner.os }}-bun-${{ hashFiles('**/lockfiles') }}
+        key: ${{ runner.os }}-bun-${{ hashFiles('bun.lockb') }}
         path: ~/.bun/install/cache
     - uses: oven-sh/setup-bun@v1
       with:
@@ -32,7 +32,7 @@ jobs:
     - uses: actions/checkout@v4
     - uses: actions/cache@v3
       with:
-        key: ${{ runner.os }}-bun-${{ hashFiles('**/lockfiles') }}
+        key: ${{ runner.os }}-bun-${{ hashFiles('bun.lockb') }}
         path: ~/.bun/install/cache
     - uses: oven-sh/setup-bun@v1
       with:
@@ -48,7 +48,7 @@ jobs:
     - uses: actions/checkout@v4
     - uses: actions/cache@v3
       with:
-        key: ${{ runner.os }}-bun-${{ hashFiles('**/lockfiles') }}
+        key: ${{ runner.os }}-bun-${{ hashFiles('bun.lockb') }}
         path: ~/.bun/install/cache
     - uses: oven-sh/setup-bun@v1
       with:
@@ -64,7 +64,7 @@ jobs:
     - uses: actions/checkout@v4
     - uses: actions/cache@v3
       with:
-        key: ${{ runner.os }}-bun-${{ hashFiles('**/lockfiles') }}
+        key: ${{ runner.os }}-bun-${{ hashFiles('bun.lockb') }}
         path: ~/.bun/install/cache
     - uses: oven-sh/setup-bun@v1
       with:
@@ -140,6 +140,7 @@ jobs:
 
     env:
       RAILS_ENV: test
+      CI: true
       RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
       DATABASE_URL: postgres://postgres:postgres@localhost:5432/yrp_test
 
