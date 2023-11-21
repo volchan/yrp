@@ -1,5 +1,8 @@
 import React from 'react'
 import { Outlet } from '@tanstack/react-router'
+import Sidebar from './components/Sidebar'
+
+import './styles/app.scss'
 
 const TanStackRouterDevtools =
   import.meta.env.NODE_ENV === 'production'
@@ -15,10 +18,11 @@ const TanStackRouterDevtools =
 
 function App() {
   return (
-    <>
+    <div className="wrapper">
+      <Sidebar />
       <Outlet />
       <TanStackRouterDevtools initialIsOpen={false} />
-    </>
+    </div>
   )
 }
 
