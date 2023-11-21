@@ -6,7 +6,7 @@ services:
     image: postgres:16
     container_name: postgres
     volumes:
-      - ./api/tmp/db:/var/lib/postgresql/data
+      - ./tmp/db:/var/lib/postgresql/data
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
