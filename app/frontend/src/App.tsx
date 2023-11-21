@@ -1,10 +1,20 @@
-import { useState } from 'react'
-
 import reactLogo from './assets/react.svg'
 import { Button } from './components/Button'
+import { effect, useSignal } from '@preact/signals-react'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const count = useSignal(0)
+  const time = useSignal(new Date().toLocaleTimeString())
+
+  effect(() => {
+    const interval = setInterval(() => {
+      time.value = new Date().toLocaleTimeString()
+    }, 1000)
+
+    return () => {
+      clearInterval(interval)
+    }
+  })
 
   console.log(import.meta.env) // eslint-disable-line no-console
   console.log(import.meta.env.CLIENT_SECRET) // eslint-disable-line no-console
@@ -16,7 +26,8 @@ function App() {
         <p>
           Edit <code>src/App.tsx</code> and save to reload.
         </p>
-        <Button label={`Count is ${count}`} onClick={() => setCount(count + 1)} />
+        Time is {time.value}
+        <Button label={`Count is ${count.value}`} onClick={() => count.value++} />
       </div>
     </div>
   )
