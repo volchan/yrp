@@ -26,4 +26,7 @@ Rails.application.routes.draw do
       end
     end
   end
+
+  # Defines the catch-all route that renders the React app.
+  match '*path', to: 'home#index', via: :all
 end
