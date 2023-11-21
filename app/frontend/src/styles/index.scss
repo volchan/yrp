@@ -2,7 +2,7 @@
 
 @use './variables/colors.scss';
 
-@import-normalize;
+@import 'normalize.css/normalize.css';
 
 :root {
   background-color: map.get(colors.$colors, 'bg');
@@ -10,7 +10,6 @@
   font-family: Roboto, Helvetica, sans-serif;
 }
 
-body {
-  margin: 0;
-  padding: 0;
+a {
+  text-decoration: none;
 }

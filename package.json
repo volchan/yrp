@@ -1,6 +1,6 @@
 {
   "name": "client",
-  "packageManager": "bun@1.0.11",
+  "packageManager": "bun@1.0.13",
   "private": true,
   "scripts": {
     "build": "tsc && vite build",
@@ -26,6 +26,7 @@
     "@vitejs/plugin-react": "^4.2.0",
     "autoprefixer": "^10.4.16",
     "normalize.css": "^8.0.1",
+    "postcss-normalize": "^10.0.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "vite": "^5.0.0",
