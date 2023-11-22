@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class DoorkeeperTokenSerializer < Oj::Serializer
   transform_keys :camelize
 

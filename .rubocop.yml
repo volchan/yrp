@@ -43,6 +43,8 @@ Rails/OutputSafety:
 
 Style/Documentation:
   Enabled: false
+Style/FrozenStringLiteralComment: # no need to add magic comment with the 'freezolite' gem
+  Enabled: false
 Style/TrailingCommaInArguments:
   EnforcedStyleForMultiline: comma
 Style/TrailingCommaInArrayLiteral:

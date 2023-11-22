@@ -123,6 +123,8 @@ GEM
       i18n (>= 1.8.11, < 2)
     fast_blank (1.0.1)
     ffi (1.16.3)
+    freezolite (0.4.0)
+      require-hooks (~> 0.2)
     globalid (1.2.1)
       activesupport (>= 6.1)
     i18n (1.14.1)
@@ -250,6 +252,7 @@ GEM
     regexp_parser (2.8.2)
     reline (0.4.0)
       io-console (~> 0.5)
+    require-hooks (0.2.0)
     require_all (3.0.0)
     rexml (3.2.6)
     rspec-core (3.12.2)
@@ -348,6 +351,7 @@ DEPENDENCIES
   dotenv_validator
   factory_bot_rails
   faker
+  freezolite
   oj_serializers
   overcommit
   pg (~> 1.1)

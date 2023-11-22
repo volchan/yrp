@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 RSpec.shared_examples 'when validating attributes' do |validations|
   validations.each do |validation|
     it validation[:desc] do

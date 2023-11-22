@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 require_relative 'boot'
 
 require 'rails'
@@ -21,6 +19,8 @@ require_relative '../app/middleware/format_params'
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
+
+require 'freezolite/auto'
 
 module Yrp
   class Application < Rails::Application
