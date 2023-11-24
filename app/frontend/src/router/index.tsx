@@ -3,6 +3,7 @@ import { createBrowserRouter } from 'react-router-dom'
 import App from '../App'
 import IndexPage from '../pages/index.page'
 import authRoutes from './auth.routes'
+import RequireAuth from '../components/RequireAuth'
 
 const router = createBrowserRouter([
   {
@@ -11,7 +12,11 @@ const router = createBrowserRouter([
     children: [
       {
         path: '/',
-        element: <IndexPage />,
+        element: (
+          <RequireAuth>
+            <IndexPage />
+          </RequireAuth>
+        ),
       },
       ...authRoutes,
     ],

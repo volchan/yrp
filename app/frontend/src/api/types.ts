@@ -5,3 +5,10 @@ export interface ILoginResponse {
   expiresIn: number
   createdAt: number
 }
+
+export interface IUser {
+  id: string
+  email: string
+  createdAt: string
+  updatedAt: string
+}
