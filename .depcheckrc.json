@@ -1,7 +1,5 @@
 {
   "ignores": [
-    "autoprefixer",
-    "normalize.css",
     "@storybook/addon-essentials",
     "@storybook/addon-interactions",
     "@storybook/addon-links",
@@ -9,7 +7,10 @@
     "@storybook/blocks",
     "@storybook/testing-library",
     "@types/eslint",
+    "autoprefixer",
     "eslint-plugin-prettier",
+    "normalize.css",
+    "postcss-normalize",
     "stylelint-config-recommended",
     "stylelint-config-recommended-scss",
     "stylelint-prettier",

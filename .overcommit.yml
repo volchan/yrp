@@ -32,6 +32,9 @@ PreCommit:
     include:
       - "**/Gemfile"
       - "**/Gemfile.lock"
+  Depcheck:
+    enabled: true
+    command: ["bun", "depcheck"]
   EsLint:
     enabled: true
     command: ["bun", "lint"]
