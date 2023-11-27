@@ -3,22 +3,24 @@ import { createBrowserRouter } from 'react-router-dom'
 import App from '../App'
 import IndexPage from '../pages/index.page'
 import authRoutes from './auth.routes'
-import RequireAuth from '../components/RequireAuth'
+import { ProtectedRoute } from './ProtectedRoute'
 
 const router = createBrowserRouter([
   {
     path: '',
     element: <App />,
     children: [
+      ...authRoutes,
       {
         path: '/',
-        element: (
-          <RequireAuth>
-            <IndexPage />
-          </RequireAuth>
-        ),
+        element: <ProtectedRoute />,
+        children: [
+          {
+            path: '',
+            element: <IndexPage />,
+          },
+        ],
       },
-      ...authRoutes,
     ],
   },
 ])

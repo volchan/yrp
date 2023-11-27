@@ -1,16 +1,15 @@
-import { effect, useSignal } from '@preact/signals-react'
-
+import { useEffect, useState } from 'react'
 import reactLogo from '../assets/react.svg'
-import { Button } from '../components/Button'
+import Button from '../components/Button'
 import Container from '../components/Container'
 
 const IndexPage = () => {
-  const count = useSignal(0)
-  const time = useSignal(new Date().toLocaleTimeString())
+  const [count, setCount] = useState(0)
+  const [time, setTime] = useState(new Date().toLocaleTimeString())
 
-  effect(() => {
+  useEffect(() => {
     const interval = setInterval(() => {
-      time.value = new Date().toLocaleTimeString()
+      setTime(new Date().toLocaleTimeString())
     }, 1000)
 
     return () => {
@@ -24,8 +23,8 @@ const IndexPage = () => {
       <p>
         Edit <code>src/App.tsx</code> and save to reload.
       </p>
-      Time is {time.value}
-      <Button label={`Count is ${count.value}`} onClick={() => count.value++} />
+      Time is {time}
+      <Button label={`Count is ${count}`} onClick={() => setCount(count + 1)} />
     </Container>
   )
 }

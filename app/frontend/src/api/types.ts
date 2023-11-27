@@ -12,3 +12,10 @@ export interface IUser {
   createdAt: string
   updatedAt: string
 }
+
+export interface ILoginInput {
+  email: string
+  password: string
+}
+
+export interface ILogoutResponse {}

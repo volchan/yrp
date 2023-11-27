@@ -4,8 +4,10 @@
   },
   "extends": [
     "eslint:recommended",
+    "plugin:@tanstack/eslint-plugin-query/recommended",
     "plugin:@typescript-eslint/recommended",
     "plugin:import/recommended",
+    "plugin:react-hooks/recommended",
     "airbnb-typescript/base",
     "prettier",
     "plugin:storybook/recommended"
@@ -22,6 +24,19 @@
     "@typescript-eslint"
   ],
   "rules": {
+    "@typescript-eslint/naming-convention": [
+      "error",
+      {
+        "selector": "variable",
+        "format": [
+          "camelCase",
+          "PascalCase"
+        ],
+        "custom": {
+          "regex": ".+_$"
+        }
+      }
+    ],
     "@typescript-eslint/no-explicit-any": "off",
     "@typescript-eslint/no-unused-vars": [
       "error",

@@ -30,7 +30,7 @@ interface ButtonProps {
 /**
  * Primary UI component for user interaction
  */
-export const Button = ({
+const Button = ({
   type = 'primary',
   size = 'medium',
   disabled = false,
@@ -55,3 +55,5 @@ export const Button = ({
     </button>
   )
 }
+
+export default Button
