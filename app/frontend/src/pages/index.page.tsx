@@ -1,11 +1,13 @@
 import { useEffect, useState } from 'react'
-import reactLogo from '../assets/react.svg'
 import Button from '../components/Button'
 import Container from '../components/Container'
+import { useAuth } from '../provider/auth.provider'
 
 const IndexPage = () => {
   const [count, setCount] = useState(0)
   const [time, setTime] = useState(new Date().toLocaleTimeString())
+
+  const { currentUser } = useAuth()
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -19,10 +21,7 @@ const IndexPage = () => {
 
   return (
     <Container style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-      <img src={reactLogo} className="App-logo" alt="logo" />
-      <p>
-        Edit <code>src/App.tsx</code> and save to reload.
-      </p>
+      <p>Hello {currentUser?.email}</p>
       Time is {time}
       <Button label={`Count is ${count}`} onClick={() => setCount(count + 1)} />
     </Container>
